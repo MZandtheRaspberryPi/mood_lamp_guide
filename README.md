@@ -12,6 +12,17 @@ I'll assume you have solderless headers. To use them, follow the guide and put i
 ## Putting the Lamp Together
 You can follow the [guide here](https://learn.pimoroni.com/tutorial/sandyj/fitting-hammer-headers).
 
-## Scheduling a script to run regularly
-You'll need to setup a cron job to run a script of your choosing on startup.
+## Get familiar with the pHAT code
+I'd recommend going through this tutorial [here](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-unicorn-phat) and running a python console and running the given commands line by line to see how the lamp works and how you can control it with code. From here you should be ready to write your own code! Imagine a light show, a lamp that turns itself on and off at regular times, or some other creative use.
 
+## Scheduling a script to run on startup
+You'll need to setup a cron job to run a script of your choosing on startup. You can see the example script I included called auto_lamp.py in this repository, or you could use one of the pimoroni examples in unicornhat/examples folder in your home directory. I particularly like the rainbow.py example!
+
+To use this, navigate to your crontab for the super user
+```sudo crontab -e```
+
+And add a line at the bottom replacing your user in the home directory.
+```@reboot sudo python3 /home/[your_user]/unicornhat/examples/rainbow.py```
+
+Then when you reboot the pi, it should run this script at startup and you should see your line come in.
+```sudo reboot```
