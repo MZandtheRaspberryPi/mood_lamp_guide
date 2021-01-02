@@ -18,11 +18,11 @@ I'd recommend going through this tutorial [here](https://learn.pimoroni.com/tuto
 ## Scheduling a script to run on startup
 You'll need to setup a cron job to run a script of your choosing on startup. You can see the example script I included called auto_lamp.py in this repository, or you could use one of the pimoroni examples in unicornhat/examples folder in your home directory. I particularly like the rainbow.py example!
 
-To use this, navigate to your crontab for the super user
+To use this, navigate to your crontab for the super user:    
 ```sudo crontab -e```
 
-And add a line at the bottom replacing your user in the home directory.
+And add a line at the bottom replacing your user in the home directory.   
 ```@reboot sudo python3 /home/[your_user]/unicornhat/examples/rainbow.py```
 
-Then when you reboot the pi, it should run this script at startup and you should see your line come in.
+Then when you reboot the pi, it should run this script at startup and you should see your line come in.   
 ```sudo reboot```
