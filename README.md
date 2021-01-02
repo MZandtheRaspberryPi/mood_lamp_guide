@@ -1,5 +1,5 @@
 # mood_lamp_guide
-A guide on how to setup a pimoroni mood lamp, including links to various tutorials.
+A guide on how to setup a pimoroni mood lamp, including links to various tutorials.    
 ![alexa_light_demo](./alexa_light_demo.gif)
 
 There are four steps to this. Setup the pi, put in the headers to the pi and the pHAT, and then put together the mood lamp, and then configure the mood lamp to run regularly.
