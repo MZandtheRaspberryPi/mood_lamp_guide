@@ -3,6 +3,11 @@ A guide on how to setup a pimoroni mood lamp, including links to various pieces
 
 There are four steps to this. Setup the pi, put in the headers to the pi and the pHAT, and then put together the mood lamp, and then configure the mood lamp to run regularly.
 
+## Equipment Needed
+You'll need a mood lamp kit from pimoroni [here](https://shop.pimoroni.com/products/mood-light-pi-zero-w-project-kit).   
+You can use solderless headers so you don't have to solder them and you can instead hammer them in. For example these products [here](https://shop.pimoroni.com/products/gpio-hammer-header?variant=35643318026).   
+You may also want a power adaptor that will plug into the wall. I like the official power supply in white color as it matches the lamp (ensure its a micro usb port for the pi zero). You can see an example [here](https://shop.pimoroni.com/products/raspberry-pi-universal-power-supply).
+
 ## Setting up the Pi
 You can follow the guide here [pi_setup_guide](https://github.com/MZandtheRaspberryPi/pi_headless_setup) and do the first two sections including "Preparing the Micro SD Card" and "First SSH connection, changing default user". 
 
