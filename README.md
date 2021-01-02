@@ -14,3 +14,4 @@ You can follow the [guide here](https://learn.pimoroni.com/tutorial/sandyj/fitti
 
 ## Scheduling a script to run regularly
 You'll need to setup a cron job to run a script of your choosing on startup.
+
