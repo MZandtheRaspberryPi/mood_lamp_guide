@@ -43,25 +43,25 @@ def setAllPixels(r,g,b,brightness):
             uh.set_pixel(x,y,r,g,b)
     uh.show()
 
-weekdaySchedule = {'firstWakeUpTime':620,
-'secondWakeUpTime':640,
-'thirdWakeUpTime':645,
-'fourthWakeUpTime':7,
+weekdaySchedule = {'firstWakeUpTime':640,
+'secondWakeUpTime':650,
+'thirdWakeUpTime':700,
+'fourthWakeUpTime':730,
 'goneTime':800,
 'restartTime':1600,
-'firstBedTime':2000,
-'secondBedTime':2015,
-'thirdBedTime':2030,
-'offTime':2045}
+'firstBedTime':2100,
+'secondBedTime':2110,
+'thirdBedTime':2120,
+'offTime':2130}
 
 weekendSchedule = {'firstWakeUpTime':800,
 'secondWakeUpTime':815,
 'thirdWakeUpTime':830,
 'fourthWakeUpTime':1000,
-'firstBedTime':2300,
-'secondBedTime':2315,
-'thirdBedTime':2330,
-'offTime':2345}
+'firstBedTime':2200,
+'secondBedTime':2220,
+'thirdBedTime':2230,
+'offTime':2240}
 
 if __name__ == "__main__":
     # this won't be run when imported
