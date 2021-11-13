@@ -6,7 +6,7 @@ import logging
 import datetime
 import time
 import unicornhat as uh
-import rainbow
+import snow
 
 def sleepTillMorn(startTime):
     while True:
@@ -92,7 +92,7 @@ if __name__ == "__main__":
                 r,g,b = lightYellow3[0],lightYellow3[1],lightYellow3[2]
                 pulse(weekendSchedule['thirdWakeUpTime'],weekendSchedule['fourthWakeUpTime'],r,g,b)
             elif day == 'Saturday' and clockTime >= weekendSchedule['fourthWakeUpTime'] and clockTime < weekendSchedule['firstBedTime']:
-                rainbow.rainbow(weekendSchedule['firstBedTime'])
+                snow.snow(weekendSchedule['firstBedTime'])
             elif day == 'Saturday' and clockTime >= weekendSchedule['firstBedTime'] and clockTime < weekendSchedule['secondBedTime']:
                 r,g,b = blueViolet[0],blueViolet[1],blueViolet[2]
                 pulse(weekendSchedule['firstBedTime'], weekendSchedule['secondBedTime'], r,g,b,maxBrightness = .6)
@@ -103,7 +103,7 @@ if __name__ == "__main__":
                 r,g,b = blueViolet[0],blueViolet[1],blueViolet[2]
                 setAllPixels(r,g,b,brightness = .2)
             elif day == 'Sunday' and clockTime >= weekendSchedule['fourthWakeUpTime'] and clockTime < weekdaySchedule['firstBedTime']:
-                rainbow.rainbow(weekdaySchedule['firstBedTime'])
+                snow.snow(weekdaySchedule['firstBedTime'])
             elif day == 'Sunday' and clockTime >= weekdaySchedule['firstBedTime'] and clockTime < weekdaySchedule['secondBedTime']:
                 r,g,b = blueViolet[0],blueViolet[1],blueViolet[2]
                 pulse(weekdaySchedule['firstBedTime'], weekdaySchedule['secondBedTime'], r,g,b,maxBrightness = .5)
