@@ -125,7 +125,7 @@ if __name__ == "__main__":
             current_hour_key = hours_for_day[-1]
             end_time = weekendScheduleHours[0]
 
-        logging.info("{} and current hour key is {} and end time is {}", day, current_hour_key, end_time)
+        logging.info("{} and current hour key is {} and end time is {}".format(day, current_hour_key, end_time))
 
         current_hour_settings = settings_for_day[current_hour_key]
         r, g, b = current_hour_settings["color"]
