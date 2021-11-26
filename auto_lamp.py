@@ -49,12 +49,16 @@ def pulse(endTime, r, g, b, maxBrightness=.5, pulseTimeInterval=.01, brightStepI
         brightRange.reverse()
 
 
-def setAllPixels(end_time, r, g, b, brightness):
+def setAllPixels(r, g, b, brightness):
     uh.brightness(brightness)
     for x in range(8):
         for y in range(8):
             uh.set_pixel(x, y, r, g, b)
     uh.show()
+
+
+def setAllPixelsAndSleep(end_time, r, g, b, brightness):
+    setAllPixels(r, g, b, brightness)
     while getClockTime() < end_time:
         time.sleep(3)
 
@@ -66,8 +70,8 @@ def sleep_till_morn_wrapper(end_time, r, g, b, brightness):
     sleepTillMorn(end_time)
 
 
-weekdaySchedule = {640: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": setAllPixels},
-                   650: {"color": LIGHT_YELLOW_3, "brightness": .3, "function": setAllPixels},
+weekdaySchedule = {640: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": setAllPixelsAndSleep},
+                   650: {"color": LIGHT_YELLOW_3, "brightness": .3, "function": setAllPixelsAndSleep},
                    700: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
                    730: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
                    800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": sleep_till_morn_wrapper},
@@ -77,8 +81,8 @@ weekdaySchedule = {640: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
                    2120: {"color": BLUE_VIOLET, "brightness": .4, "function": pulse},
                    2130: {"color": BLUE_VIOLET, "brightness": .2, "function": sleep_till_morn_wrapper}}
 
-weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": setAllPixels},
-                   815: {"color": LIGHT_YELLOW_3, "brightness": .3, "function": setAllPixels},
+weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": setAllPixelsAndSleep},
+                   815: {"color": LIGHT_YELLOW_3, "brightness": .3, "function": setAllPixelsAndSleep},
                    830: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
                    1000: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": snow_wrapper},
                    2200: {"color": BLUE_VIOLET, "brightness": .6, "function": pulse},
@@ -109,9 +113,10 @@ if __name__ == "__main__":
             hour_min = hours_for_day[i]
             if clockTime >= hour_min:
                 continue
-            elif not clockTime < hour_min:
+            elif clockTime < hour_min:
                 current_hour_key = hours_for_day[i - 1]
                 end_time = hours_for_day[i]
+                break
 
         # if we are past the last time, its turn off time
         if current_hour_key is None and day not in ["Sunday", "Friday"]:
@@ -125,7 +130,7 @@ if __name__ == "__main__":
             current_hour_key = hours_for_day[-1]
             end_time = weekendScheduleHours[0]
 
-        logging.info("{} and current hour key is {} and end time is {}".format(day, current_hour_key, end_time))
+        logging.info("{} {} current hour key is {} and end time is {}".format(day, clockTime, current_hour_key, end_time))
 
         current_hour_settings = settings_for_day[current_hour_key]
         r, g, b = current_hour_settings["color"]
