@@ -31,10 +31,15 @@ def getDay():
     day = dt.strftime('%A')
     return day
 
-def sleepTillMorn(startTime):
+def sleepTillMorn(wakeTime):
     priorDay = getDay()
-    while getClockTime() < startTime or priorDay == getDay():
-        time.sleep(10)
+    # assume sleep till next day if waketime less than current time
+    if getClockTime() > wakeTime:
+        while getClockTime() < wakeTime or priorDay == getDay():
+            time.sleep(10)
+    else:
+        while getClockTime() < wakeTime:
+            time.sleep(10)
 
 def pulse(endTime, r, g, b, maxBrightness=.5, pulseTimeInterval=.01, brightStepInterval=1):
     brightRange = list(range(200, int(maxBrightness*1000), brightStepInterval))
