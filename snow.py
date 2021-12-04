@@ -68,3 +68,4 @@ def snow(stop_time):
     while int(datetime.now().strftime("%H%M")) < stop_time:
         step()
         sleep(0.3)
+    rows.clear()

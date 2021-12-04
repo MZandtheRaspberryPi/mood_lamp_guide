@@ -69,6 +69,8 @@ def setAllPixelsAndSleep(end_time, r, g, b, brightness):
 
 
 def snow_wrapper(end_time, r, g, b, brightness):
+    logging.info("showing snow")
+    uh.brightness(brightness)
     snow.snow(end_time)
 
 def sleep_till_morn_wrapper(end_time, r, g, b, brightness):
@@ -89,7 +91,7 @@ weekdaySchedule = {640: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
 weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": setAllPixelsAndSleep},
                    815: {"color": LIGHT_YELLOW_3, "brightness": .3, "function": setAllPixelsAndSleep},
                    830: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
-                   1000: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": snow_wrapper},
+                   1000: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": snow_wrapper},
                    2200: {"color": BLUE_VIOLET, "brightness": .6, "function": pulse},
                    2220: {"color": BLUE_VIOLET, "brightness": .5, "function": pulse},
                    2230: {"color": BLUE_VIOLET, "brightness": .4, "function": pulse},
