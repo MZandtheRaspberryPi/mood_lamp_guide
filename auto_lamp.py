@@ -20,6 +20,9 @@ weekdayScheduleHours = [640, 650, 700, 730, 800, 1600, 2100, 2110, 2120, 2130]
 
 weekendScheduleHours = [800, 815, 830, 1000, 2200, 2220, 2230, 2240]
 
+sundayScheduleHours = [800, 815, 830, 1000, 2100, 2110, 2120, 2130]
+fridayScheduleHours = [640, 650, 700, 730, 800, 1600,  2200, 2220, 2230, 2240]
+
 def getClockTime():
     dt = datetime.datetime.now()
     clockTime = dt.strftime('%H%M')
@@ -82,7 +85,7 @@ weekdaySchedule = {640: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
                    700: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
                    730: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": pulse},
                    800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": sleep_till_morn_wrapper},
-                   1600: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": snow_wrapper},
+                   1600: {"color": LIGHT_YELLOW_3, "brightness": .5, "function": snow_wrapper},
                    2100: {"color": BLUE_VIOLET, "brightness": .6, "function": pulse},
                    2110: {"color": BLUE_VIOLET, "brightness": .5, "function": pulse},
                    2120: {"color": BLUE_VIOLET, "brightness": .4, "function": pulse},
@@ -96,6 +99,9 @@ weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
                    2220: {"color": BLUE_VIOLET, "brightness": .5, "function": pulse},
                    2230: {"color": BLUE_VIOLET, "brightness": .4, "function": pulse},
                    2240: {"color": BLUE_VIOLET, "brightness": .2, "function": sleep_till_morn_wrapper}}
+
+sundaySchedule =  {**weekdaySchedule, **weekendSchedule}
+FridaySchedule = sundaySchedule
 
 
 if __name__ == "__main__":
@@ -111,8 +117,18 @@ if __name__ == "__main__":
         clockTime = getClockTime()
         day = getDay()
 
-        settings_for_day = weekendSchedule if day == "Sunday" or day == "Saturday" else weekdaySchedule
-        hours_for_day = weekendScheduleHours if day == "Sunday" or day == "Saturday" else weekdayScheduleHours
+        if day == "Saturday":
+            settings_for_day = weekendSchedule
+            hours_for_day = weekendScheduleHours
+        elif day == "Sunday":
+            settings_for_day = sundaySchedule
+            hours_for_day = sundayScheduleHours
+        elif day == "Friday":
+            settings_for_day = fridaySchedule
+            hours_for_day = fridayScheduleHours
+        else:
+            settings_for_day = weekdaySchedule
+            hours_for_day = weekdayScheduleHours
 
         current_hour_key = None
         end_time = None
@@ -130,7 +146,7 @@ if __name__ == "__main__":
             current_hour_key = hours_for_day[-1]
             end_time = hours_for_day[0]
         # monday sleep till weekday wakeup
-        elif current_hour_key is None and day == "Sunday":
+        elif current_hour_key == "Sunday" and current_hour_key is None:
             current_hour_key = hours_for_day[-1]
             end_time = weekdayScheduleHours[0]
         elif current_hour_key is None and day == "Friday":
