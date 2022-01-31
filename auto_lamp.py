@@ -7,7 +7,7 @@ import datetime
 import time
 import unicornhat as uh
 import snow
-
+import subprocess
 
 
 LIGHT_YELLOW_3 = [255, 255, 102]
@@ -110,6 +110,20 @@ if __name__ == "__main__":
                         format=' %(asctime)s - %(levelname)s - %(message)s')
     logging.disable(logging.DEBUG)
     logging.info('running lamp...')
+
+    timesyncd_is_up = False
+    while not timesyncd_is_up:
+        p = subprocess.Popen(["systemctl", "is-active", "--quiet", "systemd-timesyncd"])
+        try:
+            p.wait(5)
+        except subprocess.TimeoutExpired:
+            logging.warning('waiting for systemctl is-active call for systemd-timesyncd  to return timed out in 1 second')
+        if p.returncode == 0:
+            timesyncd_is_up = True
+        else:
+            logging.info('sleeping till timesyncd_is_up')
+            print(p.returncode)
+            time.sleep(1)
 
     uh.set_layout(uh.PHAT)
 
