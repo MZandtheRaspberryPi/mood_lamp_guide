@@ -102,7 +102,7 @@ weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
 
 sundaySchedule =  {**weekdaySchedule, **weekendSchedule}
 FridaySchedule = sundaySchedule
-
+timeout_for_is_active_systemctl_call = 5
 
 if __name__ == "__main__":
     # this won't be run when imported
@@ -115,9 +115,10 @@ if __name__ == "__main__":
     while not timesyncd_is_up:
         p = subprocess.Popen(["systemctl", "is-active", "--quiet", "systemd-timesyncd"])
         try:
-            p.wait(5)
+            p.wait(timeout_for_is_active_systemctl_call)
         except subprocess.TimeoutExpired:
-            logging.warning('waiting for systemctl is-active call for systemd-timesyncd  to return timed out in 1 second')
+            logging.warning('waiting for systemctl is-active call for '
+			    'systemd-timesyncd  to return timed out in {} second'.format(timeout_for_is_active_systemctl_call))
         if p.returncode == 0:
             timesyncd_is_up = True
         else:
