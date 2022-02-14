@@ -69,3 +69,6 @@ def snow(stop_time):
         step()
         sleep(0.3)
     rows.clear()
+
+if __name__ == "__main__":
+    snow(2349)
