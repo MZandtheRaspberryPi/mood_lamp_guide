@@ -25,3 +25,6 @@ def rainbow(stop_time):
                 unicorn.set_pixel(x,y,int(r),int(g),int(b))
         unicorn.show()
         time.sleep(0.01)
+
+if __name__ == "__main__":
+    rainbow(2359)
