@@ -44,8 +44,8 @@ def sleepTillMorn(wakeTime):
         while getClockTime() < wakeTime:
             time.sleep(10)
 
-def pulse(endTime, r, g, b, maxBrightness=.5, pulseTimeInterval=.01, brightStepInterval=1):
-    brightRange = list(range(200, int(maxBrightness*1000), brightStepInterval))
+def pulse(endTime, r, g, b, minBrightness=.25, maxBrightness=.5, pulseTimeInterval=.01, brightStepInterval=1):
+    brightRange = list(range(int(minBrightness*1000), int(maxBrightness*1000), brightStepInterval))
     while getClockTime() < endTime:
         for brightness in brightRange:
             setAllPixels(r, g, b, brightness / 1000)
