@@ -101,7 +101,7 @@ weekendSchedule = {800: {"color": LIGHT_YELLOW_3, "brightness": .2, "function": 
                    2240: {"color": BLUE_VIOLET, "brightness": .2, "function": sleep_till_morn_wrapper}}
 
 sundaySchedule =  {**weekdaySchedule, **weekendSchedule}
-FridaySchedule = sundaySchedule
+fridaySchedule = sundaySchedule
 timeout_for_is_active_systemctl_call = 5
 
 if __name__ == "__main__":
@@ -144,7 +144,8 @@ if __name__ == "__main__":
         else:
             settings_for_day = weekdaySchedule
             hours_for_day = weekdayScheduleHours
-
+        logging.info("settings for day are: {}".format(settings_for_day))
+        logging.info("hours for day are: {}".format(hours_for_day))
         current_hour_key = None
         end_time = None
         for i in range(0, len(hours_for_day)):
